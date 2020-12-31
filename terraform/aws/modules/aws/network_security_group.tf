@@ -4,14 +4,11 @@ resource "aws_security_group" "nomad_sg" {
   vpc_id      = aws_vpc.nomad_vpc.id
 
   # SSH access if host_access_ip has CIDR blocks
-  dynamic "ingress" {
-    for_each = var.host_access_ip
-    content {
-      from_port = 22
-      to_port   = 22
-      protocol  = "tcp"
-      cidr_blocks = [ "${ingress.value}" ]
-    }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.host_access_ip]
   }
 
 #HTTP
