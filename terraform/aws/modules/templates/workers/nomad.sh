@@ -34,6 +34,7 @@ client {
   meta {
     "type" = "worker",
     "name" = "${node_name}"
+    connect.log_level = "debug" 
   }
   host_volume "mysql_mount" {
     path      = "/opt/mysql/data"
