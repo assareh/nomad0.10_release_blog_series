@@ -31,7 +31,7 @@ resource "aws_instance" "nomad_worker" {
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.worker_instance_type
-  key_name      = aws_key_pair.nomad_ssh_key.id
+  key_name      = var.owner
 
   subnet_id              = "${element(aws_subnet.nomad_subnet.*.id, count.index)}"
   iam_instance_profile   = aws_iam_instance_profile.nomad_join.name
